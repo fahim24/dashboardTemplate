@@ -14,6 +14,9 @@ export const metadata: Metadata = {
 	},
 	description: "Home Page",
 	authors: [{ name: "Fahim" }],
+	icons: {
+		icon: "/favicon.png", // /public path
+	},
 };
 
 export default function RootLayout({

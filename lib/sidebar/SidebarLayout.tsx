@@ -108,11 +108,13 @@ const SidebarLayout: React.FC<SidebarLayoutProps> = ({
 
 				<div className={wrapperClass}>
 					<div
-						className={`${[
+						className={[
 							condensed && !horizontalScroll && "w-full",
 							!condensed && horizontalScroll && "mx-auto w-full",
 							!condensed && !horizontalScroll && "mx-auto w-full max-w-7xl",
-						]}`}>
+						]
+							.filter(Boolean)
+							.join(" ")}>
 						{toolbarEnabled && (
 							<SidebarToolbar sidebar={sidebar} horizontalScroll={horizontalScroll}>
 								{/* <template #title><slot name="toolbar-title"></slot></template> */}
