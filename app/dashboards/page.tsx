@@ -22,7 +22,7 @@ import BarProfitChart from "@/components/charts/BarProfitChart";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-	title: "Dashboard",
+	title: "Activity",
 	description: "My Dashboard",
 };
 const Dashboards = () => {

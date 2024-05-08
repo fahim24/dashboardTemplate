@@ -14,6 +14,8 @@ const SubsidebarMenuCollapseLinks = ({ group }: { group: MenuGroupCollapse }) =>
 	const pathName = usePathname();
 
 	function onDropClick() {
+		console.log(open);
+
 		setOpen(!open);
 		if (!open) {
 			buttonRef?.current?.blur();

@@ -1,25 +1,13 @@
 "use client";
-import { Transition } from "@headlessui/react";
-import { useState } from "react";
+import React, { useState } from "react";
+import { BaseCheckboxAnimated } from "@shuriken-ui/react";
 
-const TT = () => {
-	const [isShowing, setIsShowing] = useState(false);
-
+export default function Page() {
+	const [check, setCheck] = useState(false);
+	console.log(check);
 	return (
-		<>
-			<button onClick={() => setIsShowing((isShowing) => !isShowing)}>Toggle</button>
-			<Transition
-				show={isShowing}
-				enter="transition-opacity duration-75"
-				enterFrom="opacity-0"
-				enterTo="opacity-100"
-				leave="transition-opacity duration-150"
-				leaveFrom="opacity-100"
-				leaveTo="opacity-0">
-				I will fade in and out
-			</Transition>
-		</>
+		<div>
+			<BaseCheckboxAnimated onChange={(e) => setCheck(!check)} value={check} color="primary" />
+		</div>
 	);
-};
-
-export default TT;
+}
