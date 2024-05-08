@@ -52,7 +52,7 @@ const page = () => {
 		{
 			id: 3,
 			tooltip: "Naomi Liversky",
-			src: undefined,
+			src: "",
 			text: "NL",
 			role: "UI/UX designer",
 		},
@@ -215,7 +215,7 @@ const page = () => {
 							</BaseParagraph>
 						</div>
 						<div>
-							<BaseAvatarGroup avatars={candidates} size="sm" limit={2} />
+							<BaseAvatarGroup avatars={candidates} size="sm" limit={3} />
 						</div>
 					</div>
 				</div>
