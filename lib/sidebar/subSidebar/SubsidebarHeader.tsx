@@ -1,6 +1,6 @@
 import { setIsSidebarOpen } from "@/lib/features/sidebarSlice";
 import { useAppDispatch } from "@/lib/hooks";
-import { useSidebar } from "@/lib/hooks/useSidebar";
+import useSidebar from "@/lib/hooks/useSidebar";
 import React from "react";
 import { FaChevronLeft } from "react-icons/fa";
 

@@ -5,6 +5,7 @@ export interface SidebarState {
 	isSearchOpen: boolean;
 	isSidebarOpen: boolean;
 	currentSidebarName: string | undefined;
+	currentPageTitle: string;
 }
 
 const initialState: SidebarState = {
@@ -12,6 +13,7 @@ const initialState: SidebarState = {
 	isSearchOpen: false,
 	isSidebarOpen: false,
 	currentSidebarName: undefined,
+	currentPageTitle: "Title",
 };
 
 export const sidebarSlice = createSlice({
@@ -30,10 +32,18 @@ export const sidebarSlice = createSlice({
 		setCurrentSidebarName: (state, action: PayloadAction<string | undefined>) => {
 			state.currentSidebarName = action.payload;
 		},
+		setCurrentPageTitle: (state, action: PayloadAction<string | undefined>) => {
+			state.currentSidebarName = action.payload;
+		},
 	},
 });
 
-export const { setIsSwitcherOpen, setIsSearchOpen, setIsSidebarOpen, setCurrentSidebarName } =
-	sidebarSlice.actions;
+export const {
+	setIsSwitcherOpen,
+	setIsSearchOpen,
+	setIsSidebarOpen,
+	setCurrentSidebarName,
+	setCurrentPageTitle,
+} = sidebarSlice.actions;
 
 export default sidebarSlice.reducer;

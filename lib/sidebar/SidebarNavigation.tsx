@@ -1,5 +1,5 @@
 import React from "react";
-import { useSidebar } from "@/lib/hooks/useSidebar";
+import useSidebar from "@/lib/hooks/useSidebar";
 import { useAppSelector } from "../hooks";
 import SidebarNavigationItem from "./SidebarNavigationItem";
 

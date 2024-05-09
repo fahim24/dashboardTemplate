@@ -2,9 +2,11 @@ import React, { useEffect, useRef, useState } from "react";
 import { MenuGroupCollapse, MenuGroupCollapseLink } from "./SubsidebarMenu";
 import { FaChevronDown } from "react-icons/fa";
 import Link from "next/link";
-import { useSidebar } from "@/lib/hooks/useSidebar";
+import useSidebar from "@/lib/hooks/useSidebar";
 import useBreakPoint from "@/lib/hooks/useBreakPoint";
 import { usePathname } from "next/navigation";
+import { setCurrentPageTitle } from "@/lib/features/sidebarSlice";
+import { useAppDispatch } from "@/lib/hooks";
 
 const SubsidebarMenuCollapseLinks = ({ group }: { group: MenuGroupCollapse }) => {
 	const [open, setOpen] = useState(false);
@@ -12,13 +14,14 @@ const SubsidebarMenuCollapseLinks = ({ group }: { group: MenuGroupCollapse }) =>
 	const { toggle } = useSidebar();
 	const { isLg } = useBreakPoint("lg");
 	const pathName = usePathname();
+	const dispatch = useAppDispatch();
 
 	function onDropClick() {
 		console.log(open);
 
 		setOpen(!open);
 		if (!open) {
-			buttonRef?.current?.blur();
+			// buttonRef?.current?.blur();
 		}
 	}
 
@@ -26,7 +29,6 @@ const SubsidebarMenuCollapseLinks = ({ group }: { group: MenuGroupCollapse }) =>
 		if (isLg) {
 			return;
 		}
-
 		toggle();
 	}
 

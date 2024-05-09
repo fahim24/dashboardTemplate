@@ -25,6 +25,7 @@ export const metadata: Metadata = {
 	title: "Activity",
 	description: "My Dashboard",
 };
+
 const Dashboards = () => {
 	return (
 		<div>

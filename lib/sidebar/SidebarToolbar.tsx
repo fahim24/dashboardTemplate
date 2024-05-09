@@ -3,10 +3,11 @@ import React from "react";
 import { BaseHeading } from "@shuriken-ui/react";
 
 import { useAppConfig } from "@/lib/hooks/useAppConfig";
-import { useSidebar } from "@/lib/hooks/useSidebar";
+import useSidebar from "@/lib/hooks/useSidebar";
 
 import SidebarBurger from "./SidebarBurger";
 import SidebarTools from "./SidebarTools";
+import { useAppSelector } from "../hooks";
 
 type SidebarToolbarProps = {
 	sidebar: boolean;
@@ -18,6 +19,7 @@ const SidebarToolbar: React.FC<SidebarToolbarProps> = ({ sidebar, horizontalScro
 	const app = useAppConfig();
 	const { hasSubsidebar } = useSidebar();
 	const showNavBurger = sidebar && app.app.sidebar?.toolbar?.showNavBurger && hasSubsidebar;
+	const currentPageTitle = useAppSelector((state) => state.sidebar.currentPageTitle);
 	return (
 		<>
 			<div
@@ -33,7 +35,7 @@ const SidebarToolbar: React.FC<SidebarToolbarProps> = ({ sidebar, horizontalScro
 						weight="light"
 						className="text-muted-800 hidden dark:text-white md:block">
 						{/* <slot name="title">{{ route.meta.title }}</slot> */}
-						<span>Title</span>
+						<span>{currentPageTitle}</span>
 					</BaseHeading>
 				)}
 

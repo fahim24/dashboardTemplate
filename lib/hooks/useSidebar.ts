@@ -1,6 +1,10 @@
 "use client";
 import { usePathname, useSearchParams } from "next/navigation";
-import { setCurrentSidebarName, setIsSidebarOpen } from "../features/sidebarSlice";
+import {
+	setCurrentPageTitle,
+	setCurrentSidebarName,
+	setIsSidebarOpen,
+} from "../features/sidebarSlice";
 import { useAppDispatch, useAppSelector } from "../hooks";
 import { useAppConfig } from "./useAppConfig";
 import useBreakPoint from "./useBreakPoint";
@@ -24,10 +28,11 @@ export type Sidebar = {
 	props?: any;
 };
 
-export function useSidebar() {
+function useSidebar() {
 	const app = useAppConfig();
 	const dispatch = useAppDispatch();
 	const pathName = usePathname();
+
 	// const searchParams = useSearchParams();
 	const isSidebarOpen = useAppSelector((state) => state.sidebar.isSidebarOpen);
 	const currentSidebarName = useAppSelector((state) => state.sidebar.currentSidebarName);
@@ -51,7 +56,9 @@ export function useSidebar() {
 
 	function toggle() {
 		// If no sidebar item is selected, open the first one
+
 		if (!currentSidebarName && !isSidebarOpen) {
+			// console.log(sidebars?.[0]?.title);
 			if (!sidebars?.[0]?.title) {
 				// No sidebar items defined
 				return;
@@ -93,33 +100,31 @@ export function useSidebar() {
 				dispatch(setIsSidebarOpen(Boolean(currentSidebarName) && isLg));
 			}
 		}
-		return;
 	}
 
-	function useSetup() {
-		useEffect(() => {
-			if (!isLg) {
+	function setup() {
+		detect();
+
+		if (!isLg) {
+			dispatch(setIsSidebarOpen(false));
+		}
+
+		function handleSidebar(value: string | undefined) {
+			if (value) {
+				if (isLg) {
+					dispatch(setIsSidebarOpen(true));
+				}
+			} else {
 				dispatch(setIsSidebarOpen(false));
 			}
-		}, []);
-
-		useEffect(() => {
-			function handleSidebar(value: string | undefined) {
-				if (value) {
-					if (!isLg) {
-						dispatch(setIsSidebarOpen(true));
-					}
-				} else {
-					dispatch(setIsSidebarOpen(false));
-				}
-			}
-
-			handleSidebar(currentSidebarName);
-		}, []);
-
-		detect();
-		return;
+		}
+		// console.log(currentSidebarName);
+		handleSidebar(currentSidebarName);
 	}
+
+	useEffect(() => {
+		setup();
+	}, [setup]);
 
 	return {
 		sidebars,
@@ -129,6 +134,6 @@ export function useSidebar() {
 		close,
 		open,
 		detect,
-		useSetup,
 	};
 }
+export default useSidebar;

@@ -1,7 +1,7 @@
 import React from "react";
 import { MenuGroupLink } from "./SubsidebarMenu";
 import Link from "next/link";
-import { useSidebar } from "@/lib/hooks/useSidebar";
+import useSidebar from "@/lib/hooks/useSidebar";
 import useBreakPoint from "@/lib/hooks/useBreakPoint";
 
 const SubsidebarMenuLink = ({ group }: { group: MenuGroupLink }) => {

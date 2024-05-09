@@ -1,11 +1,10 @@
 "use client";
-import React, { useEffect } from "react";
+import React from "react";
 import Link from "next/link";
 import { useFormik } from "formik";
 import { BaseButton } from "@shuriken-ui/react";
 import * as Yup from "yup";
 import { useRouter } from "next/navigation";
-import useBreakPoint from "@/lib/hooks/useBreakPoint";
 
 const validationSchema = Yup.object({
 	email: Yup.string().email("Invalid email address").required("A valid email is required"),
@@ -22,10 +21,6 @@ type InputValues = {
 };
 
 const LoginForm = () => {
-	const { isMd } = useBreakPoint("md");
-	useEffect(() => {
-		console.log(isMd);
-	}, [isMd]);
 	const router = useRouter();
 	const formik = useFormik<InputValues>({
 		initialValues: {

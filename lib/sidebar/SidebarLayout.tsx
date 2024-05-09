@@ -8,7 +8,8 @@ import SidebarToolbar from "./SidebarToolbar";
 import SidebarCircularMenu from "./SidebarCircularMenu";
 import Panels from "@/lib/sidebar/panels/Panels";
 import { useAppConfig } from "@/lib/hooks/useAppConfig";
-import { useSidebar } from "@/lib/hooks/useSidebar";
+import useSidebar from "@/lib/hooks/useSidebar";
+import { setCurrentSidebarName, setIsSidebarOpen } from "../features/sidebarSlice";
 
 interface SidebarLayoutProps {
 	sidebar?: boolean;
@@ -32,20 +33,17 @@ const SidebarLayout: React.FC<SidebarLayoutProps> = ({
 	const app = useAppConfig();
 	const { isLg } = useBreakPoint("lg");
 	const dispatch = useAppDispatch();
-	const { useSetup, toggle } = useSidebar();
+	const { toggle } = useSidebar();
 	const isSidebarOpen = useAppSelector((state) => state.sidebar.isSidebarOpen);
-	const currentSidebarName = useAppSelector((state) => state.sidebar.currentSidebarName);
 	const [sidebarWidth, setSidebarWidth] = useState(sidebar ? (isSidebarOpen ? 300 : 80) : 0);
 
-	// const [sidebar, setSidebar]
-	// const setup = useSetup();
-
 	// useEffect(() => {
+	// 	setup();
 	// 	return () => {
 	// 		dispatch(setCurrentSidebarName(""));
 	// 		dispatch(setIsSidebarOpen(false));
 	// 	};
-	// }, [useSetup, dispatch]);
+	// }, [dispatch, setup]);
 
 	useEffect(() => {
 		if (!sidebar) {
@@ -73,7 +71,7 @@ const SidebarLayout: React.FC<SidebarLayoutProps> = ({
 		app.app.sidebar?.circularMenu?.enabled !== false && circularMenu !== false;
 	const navigationLogo = app.app.sidebar?.navigation?.logo;
 
-	const wrapperClass = `bg-muted-100 dark:bg-muted-900 pb-20 ${
+	const wrapperClass = `bg-muted-100 dark:bg-muted-900  ${
 		condensed
 			? "relative min-h-screen w-full overflow-x-hidden"
 			: `relative min-h-screen w-full overflow-x-hidden px-4 transition-all duration-300 lg:px-10${
@@ -116,9 +114,7 @@ const SidebarLayout: React.FC<SidebarLayoutProps> = ({
 							.filter(Boolean)
 							.join(" ")}>
 						{toolbarEnabled && (
-							<SidebarToolbar sidebar={sidebar} horizontalScroll={horizontalScroll}>
-								{/* <template #title><slot name="toolbar-title"></slot></template> */}
-							</SidebarToolbar>
+							<SidebarToolbar sidebar={sidebar} horizontalScroll={horizontalScroll} />
 						)}
 
 						<main>{children}</main>
