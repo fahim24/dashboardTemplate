@@ -20,12 +20,6 @@ export const sidebarSlice = createSlice({
 	name: "sidebar",
 	initialState,
 	reducers: {
-		setIsSwitcherOpen: (state, action: PayloadAction<boolean>) => {
-			state.isSwitcherOpen = action.payload;
-		},
-		setIsSearchOpen: (state, action: PayloadAction<boolean>) => {
-			state.isSearchOpen = action.payload;
-		},
 		setIsSidebarOpen: (state, action: PayloadAction<boolean>) => {
 			state.isSidebarOpen = action.payload;
 		},
@@ -38,12 +32,7 @@ export const sidebarSlice = createSlice({
 	},
 });
 
-export const {
-	setIsSwitcherOpen,
-	setIsSearchOpen,
-	setIsSidebarOpen,
-	setCurrentSidebarName,
-	setCurrentPageTitle,
-} = sidebarSlice.actions;
+export const { setIsSidebarOpen, setCurrentSidebarName, setCurrentPageTitle } =
+	sidebarSlice.actions;
 
 export default sidebarSlice.reducer;

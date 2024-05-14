@@ -1,3 +1,4 @@
+"use client";
 import React, { useEffect, useRef, useState } from "react";
 import { MenuGroupCollapse, MenuGroupCollapseLink } from "./SubsidebarMenu";
 import { FaChevronDown } from "react-icons/fa";
@@ -5,8 +6,6 @@ import Link from "next/link";
 import useSidebar from "@/lib/hooks/useSidebar";
 import useBreakPoint from "@/lib/hooks/useBreakPoint";
 import { usePathname } from "next/navigation";
-import { setCurrentPageTitle } from "@/lib/features/sidebarSlice";
-import { useAppDispatch } from "@/lib/hooks";
 
 const SubsidebarMenuCollapseLinks = ({ group }: { group: MenuGroupCollapse }) => {
 	const [open, setOpen] = useState(false);
@@ -14,14 +13,11 @@ const SubsidebarMenuCollapseLinks = ({ group }: { group: MenuGroupCollapse }) =>
 	const { toggle } = useSidebar();
 	const { isLg } = useBreakPoint("lg");
 	const pathName = usePathname();
-	const dispatch = useAppDispatch();
 
 	function onDropClick() {
-		console.log(open);
-
 		setOpen(!open);
-		if (!open) {
-			// buttonRef?.current?.blur();
+		if (open) {
+			buttonRef?.current?.blur();
 		}
 	}
 
@@ -68,17 +64,15 @@ const SubsidebarMenuCollapseLinks = ({ group }: { group: MenuGroupCollapse }) =>
 						<span>{group.name}</span>
 					</span>
 					<FaChevronDown
-						className={`text-muted-400 ms-auto block h-4 w-4 transition-transform duration-300 ${
-							open ? "rotate-180" : "group-focus-within:rotate-180"
+						className={`text-muted-400 ms-auto block size-4 transition-transform duration-300 ${
+							open ? "rotate-180" : ""
 						}`}
 					/>
 				</button>
 
 				<div
 					className={`transition-all duration-150 ${
-						open
-							? "max-h-max opacity-100"
-							: "max-h-0 overflow-hidden opacity-0 group-focus-within:max-h-max group-focus-within:overflow-visible group-focus-within:opacity-100"
+						open ? "max-h-max opacity-100" : "max-h-0 overflow-hidden opacity-0 "
 					}`}>
 					{group?.children && (
 						<ul className="py-2">

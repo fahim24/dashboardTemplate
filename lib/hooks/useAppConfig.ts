@@ -1,5 +1,4 @@
-import { useAppDispatch } from "@/lib/hooks";
-import { setIsSearchOpen, setIsSwitcherOpen } from "@/lib/features/sidebarSlice";
+// import { setIsSearchOpen, setIsSwitcherOpen } from "@/lib/features/sidebarSlice";
 import Logo from "../logo/Logo";
 import ThemeToggle from "../sidebar/toolbar/ThemeToggle";
 import ToolbarLanguage from "../sidebar/toolbar/ToolbarLanguage";
@@ -26,7 +25,6 @@ import {
 } from "react-icons/pi";
 
 export function useAppConfig() {
-	const dispatch = useAppDispatch();
 	return {
 		app: {
 			title: "SiteName",
@@ -104,7 +102,7 @@ export function useAppConfig() {
 							title: "Customize",
 							icon: { name: PiDropHalfBottomDuotone, class: "w-5 h-5" },
 							click: () => {
-								setIsSwitcherOpen(true);
+								// setIsSwitcherOpen(true);
 							},
 							position: "end",
 						},
@@ -112,7 +110,7 @@ export function useAppConfig() {
 							title: "Search",
 							icon: { name: PiMagnifyingGlassDuotone, class: "w-5 h-5" },
 							click: () => {
-								setIsSearchOpen(true);
+								// setIsSearchOpen(true);
 							},
 							position: "end",
 						},
@@ -346,7 +344,7 @@ export function useAppConfig() {
 							name: "Customize",
 							icon: { name: "ph:drop-half-bottom-duotone", class: "w-5 h-5" },
 							click: () => {
-								setIsSwitcherOpen(true);
+								// setIsSwitcherOpen(true);
 							},
 							position: "end",
 						},

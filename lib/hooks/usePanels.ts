@@ -1,5 +1,5 @@
 "use Client";
-import React, { useState } from "react";
+import { useState } from "react";
 import { useAppConfig } from "./useAppConfig";
 import defu from "defu";
 
@@ -30,7 +30,7 @@ const usePanels = () => {
 			setTransitionFrom(panel.position);
 			setCurrentName(panel.name);
 			setShowOverlay(panel.overlay);
-			// merge props from the panel config and the props passed to the function
+
 			setCurrentProps(defu(props ?? {}, (panel as any).props ?? {}));
 		}
 	};

@@ -1,5 +1,4 @@
 "use client";
-import { useState, useEffect } from "react";
 import Link from "next/link";
 import useBreakPoint from "@/lib/hooks/useBreakPoint";
 import { useAppDispatch, useAppSelector } from "@/lib/hooks";
@@ -9,7 +8,6 @@ import SidebarCircularMenu from "./SidebarCircularMenu";
 import Panels from "@/lib/sidebar/panels/Panels";
 import { useAppConfig } from "@/lib/hooks/useAppConfig";
 import useSidebar from "@/lib/hooks/useSidebar";
-import { setCurrentSidebarName, setIsSidebarOpen } from "../features/sidebarSlice";
 
 interface SidebarLayoutProps {
 	sidebar?: boolean;
@@ -33,37 +31,17 @@ const SidebarLayout: React.FC<SidebarLayoutProps> = ({
 	const app = useAppConfig();
 	const { isLg } = useBreakPoint("lg");
 	const dispatch = useAppDispatch();
-	const { toggle } = useSidebar();
+	const { toggle, setup } = useSidebar();
 	const isSidebarOpen = useAppSelector((state) => state.sidebar.isSidebarOpen);
-	const [sidebarWidth, setSidebarWidth] = useState(sidebar ? (isSidebarOpen ? 300 : 80) : 0);
 
 	// useEffect(() => {
 	// 	setup();
 	// 	return () => {
-	// 		dispatch(setCurrentSidebarName(""));
-	// 		dispatch(setIsSidebarOpen(false));
+	// 		setup();
+	// 		// 	dispatch(setCurrentSidebarName(""));
+	// 		// 	 dispatch(setIsSidebarOpen(false));
 	// 	};
 	// }, [dispatch, setup]);
-
-	useEffect(() => {
-		if (!sidebar) {
-			return;
-		}
-
-		const handleResize = () => {
-			if (isLg) {
-				setSidebarWidth(isSidebarOpen ? 300 : 80);
-			} else {
-				setSidebarWidth(0);
-			}
-		};
-
-		window.addEventListener("resize", handleResize);
-
-		return () => {
-			window.removeEventListener("resize", handleResize);
-		};
-	}, [sidebar, isSidebarOpen, isLg]);
 
 	const sidebarEnabled = app.app.sidebar?.navigation?.enabled !== false && sidebar !== false;
 	const toolbarEnabled = app.app.sidebar?.toolbar?.enabled !== false && toolbar !== false;

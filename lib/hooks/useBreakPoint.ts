@@ -1,5 +1,5 @@
 import { useMediaQuery } from "react-responsive";
-import tailwindConfig from "@/tailwind.config"; // Your tailwind config
+import tailwindConfig from "@/tailwind.config";
 import resolveConfig from "tailwindcss/resolveConfig";
 import { Config } from "tailwindcss/types/config";
 

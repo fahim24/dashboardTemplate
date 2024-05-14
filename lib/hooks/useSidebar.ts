@@ -1,14 +1,9 @@
 "use client";
-import { usePathname, useSearchParams } from "next/navigation";
-import {
-	setCurrentPageTitle,
-	setCurrentSidebarName,
-	setIsSidebarOpen,
-} from "../features/sidebarSlice";
-import { useAppDispatch, useAppSelector } from "../hooks";
+import { usePathname } from "next/navigation";
+import { setCurrentSidebarName, setIsSidebarOpen } from "@/lib/features/sidebarSlice";
+import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 import { useAppConfig } from "./useAppConfig";
 import useBreakPoint from "./useBreakPoint";
-import { useEffect } from "react";
 import { IconType } from "react-icons";
 
 export type Sidebar = {
@@ -107,24 +102,10 @@ function useSidebar() {
 
 		if (!isLg) {
 			dispatch(setIsSidebarOpen(false));
+		} else {
+			dispatch(setIsSidebarOpen(true));
 		}
-
-		function handleSidebar(value: string | undefined) {
-			if (value) {
-				if (isLg) {
-					dispatch(setIsSidebarOpen(true));
-				}
-			} else {
-				dispatch(setIsSidebarOpen(false));
-			}
-		}
-		// console.log(currentSidebarName);
-		handleSidebar(currentSidebarName);
 	}
-
-	useEffect(() => {
-		setup();
-	}, [setup]);
 
 	return {
 		sidebars,
@@ -134,6 +115,7 @@ function useSidebar() {
 		close,
 		open,
 		detect,
+		setup,
 	};
 }
 export default useSidebar;
